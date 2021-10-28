@@ -19,9 +19,8 @@ func Produce(data []byte){
 	defer ch.Close()
 	defer conn.Close()
 
-
 	_,err=ch.QueueDeclare(
-		"invite-hr",
+		"invite-hr2",
 		true,
 		false,
 		false,
@@ -44,7 +43,5 @@ func Produce(data []byte){
 		); err != nil{
 		log.Printf("err publishing the message: %v",err)
 	}
-
-
 }
 

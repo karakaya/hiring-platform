@@ -22,19 +22,24 @@ func index(w http.ResponseWriter, r *http.Request){
 func register(w http.ResponseWriter, r *http.Request){
 	var company db.Company
 	err := json.NewDecoder(r.Body).Decode(&company)
-	if err != nil{
-		log.Printf("err decode create company form: %v ",err)
-	}
+	failOnError(err,"err to decode company")
 	dbc.Create(&company)
 }
 //invite your hr to team to your company
 func invite(w http.ResponseWriter, r *http.Request){
 	var hr db.Hr
-	json.NewDecoder(r.Body).Decode(&hr)
-	db.InitDB().Create(&hr)
+	err:=json.NewDecoder(r.Body).Decode(&hr)
+	failOnError(err,"err to decode hr")
+
+	dbc.Create(&hr)
+
 	data,err := json.Marshal(hr)
-	if err != nil{
-		log.Printf("err to marshal hr: %v",err)
-	}
+	failOnError(err,"err to marshal json")
 	amqp.Produce(data)
+}
+
+func failOnError(err error, msg string) {
+	if err != nil {
+		log.Fatalf("%s: %s", msg, err)
+	}
 }

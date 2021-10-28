@@ -11,12 +11,12 @@ type Company struct {
 
 type Hr struct{
 	ID        int
-	Company   Company
-	CompanyID uint
-	Name string `json:"name"`
-	Email string `json:"email"`
-	Password sql.NullString `json:"password"`
-	CreatedAt sql.NullTime
+
+	CompanyID uint `json:"companyID,omitempty"`
+	Name string `json:"name,omitempty"`
+	Email string `json:"email,omitempty"`
+	Password sql.NullString `json:"password,omitempty"`
+	CreatedAt sql.NullTime `json:"created_at,omitempty"`
 }
 
 type JobAdvert struct{
