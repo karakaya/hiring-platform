@@ -2,7 +2,6 @@ package rabbitmq
 
 import (
 	"github.com/streadway/amqp"
-
 	"log"
 )
 
@@ -20,7 +19,7 @@ func Produce(data []byte){
 	defer conn.Close()
 
 	_,err=ch.QueueDeclare(
-		"invite-hr2",
+		"invite-hr",
 		true,
 		false,
 		false,

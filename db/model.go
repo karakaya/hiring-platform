@@ -1,8 +1,12 @@
 package db
 
-import "database/sql"
+import (
+	"database/sql"
+	"github.com/google/uuid"
+	"time"
+)
 type Company struct {
-	ID uint `gorm:"primaryKey"`
+	ID int `gorm:"primaryKey"`
 	Name string `json:"name"`
 	Email string `json:"email"`
 	Password string `json:"password"`
@@ -12,7 +16,7 @@ type Company struct {
 type Hr struct{
 	ID        int
 
-	CompanyID uint `json:"companyID,omitempty"`
+	CompanyID int `json:"companyID,omitempty"`
 	Name string `json:"name,omitempty"`
 	Email string `json:"email,omitempty"`
 	Password sql.NullString `json:"password,omitempty"`
@@ -21,11 +25,21 @@ type Hr struct{
 
 type JobAdvert struct{
 	Company   Company
-	CompanyID uint
+	CompanyID int
 	Hr        Hr
-	HrId      uint
+	HrId      int
 	Title string `json:"title"`
 	Body string `json:"body"`
 	Address string `json:"address"`
 	Date sql.NullTime `json:"date"`
+}
+
+type InviteHr struct{
+	ID int `gorm:"primaryKey"`
+	HrID int `json:"hr_id"`
+	Name string `json:"name"`
+	Link uuid.UUID `json:"link"`
+	Email string `json:"email"`
+	CompanyID int `json:"company_id"`
+	CreatedAt time.Time
 }
