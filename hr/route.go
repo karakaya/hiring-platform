@@ -2,8 +2,7 @@ package hr
 
 import "github.com/gorilla/mux"
 
-func routes(router *mux.Router) {
-	//router.StrictSlash(true)
-	//h := router.PathPrefix("/hr").Subrouter()
-
+func Route(hr *mux.Router) {
+	h := hr.PathPrefix("/hr").Subrouter().StrictSlash(true)
+	h.HandleFunc("/join",join).Methods("POST")
 }

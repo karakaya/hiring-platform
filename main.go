@@ -3,16 +3,18 @@ package main
 import (
 	"github.com/gorilla/mux"
 	"hiring-platform/company"
-	"hiring-platform/db"
+	"hiring-platform/database"
+	"hiring-platform/hr"
 	"log"
 	"net/http"
 )
 
 func main(){
 	r:= mux.NewRouter()
+	hr.Route(r)
  	company.Route(r)
-
-	err := db.InitDB().AutoMigrate(&db.Company{},&db.Hr{},&db.JobAdvert{},&db.InviteHr{}); if err != nil{
+	database.InitDB()
+	err := database.DB.AutoMigrate(&database.Company{},&database.Hr{},&database.JobAdvert{},&database.InviteHr{}); if err != nil{
 		log.Printf("err to migrate db: %v",err)
 	}
 	

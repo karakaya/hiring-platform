@@ -1,4 +1,4 @@
-package db
+package database
 
 import (
 	"database/sql"
@@ -16,7 +16,7 @@ type Company struct {
 type Hr struct{
 	ID        int
 
-	CompanyID int `json:"companyID,omitempty"`
+	CompanyID int `json:"company_id,omitempty"`
 	Name string `json:"name,omitempty"`
 	Email string `json:"email,omitempty"`
 	Password sql.NullString `json:"password,omitempty"`
