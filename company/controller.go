@@ -47,7 +47,7 @@ func jobAdvert(w http.ResponseWriter, r *http.Request){
 
 	database.DB.Create(&advert)
 	w.WriteHeader(http.StatusCreated)
-	
+
 }
 
 func HashPassword(password string) (string, error) {
