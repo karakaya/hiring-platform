@@ -27,4 +27,5 @@ func join(w http.ResponseWriter, r *http.Request) {
 	database.DB.Save(&hr)
 	w.WriteHeader(http.StatusCreated)
 	w.Write([]byte("successfully joined to the company"))
+
 }

@@ -25,9 +25,9 @@ type Hr struct{
 
 type JobAdvert struct{
 	Company   Company
-	CompanyID int
+	CompanyID int `json:"company_id"`
 	Hr        Hr
-	HrId      int
+	HrId      int `json:"hr_id"`
 	Title string `json:"title"`
 	Body string `json:"body"`
 	Address string `json:"address"`
