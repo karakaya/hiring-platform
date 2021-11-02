@@ -15,7 +15,6 @@ type Company struct {
 
 type Hr struct{
 	ID        int
-
 	CompanyID int `json:"company_id,omitempty"`
 	Name string `json:"name,omitempty"`
 	Email string `json:"email,omitempty"`
@@ -42,4 +41,13 @@ type InviteHr struct{
 	Email string `json:"email"`
 	CompanyID int `json:"company_id"`
 	CreatedAt time.Time
+}
+
+type Applicants struct{
+	ID int `gorm:"primaryKey"`
+	HrID int `json:"hr_id"`
+	CompanyID int `json:"company_id"`
+	Body string `json:"body"`
+	Status string `json:"status"`
+	Time sql.NullTime
 }
